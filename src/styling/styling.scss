@@ -1,0 +1,23 @@
+@forward "fonts.scss";
+@forward "elements.scss";
+@forward "atoms.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --palette-background: #E0C87E;
+    --input-background: #E0D47E;
+    --outer-gutter: 40px;
+    --inner-gutter: 20px;
+    color: rgb(30, 30, 30);
+}
+
+// COLORS:
+// #E0BC7E
+// #E0D47E
+// #E0C87E Background (analogous center)
+// #E0AD7E
+// #E0E07E
+// #E0DAC8 (lighter varient)

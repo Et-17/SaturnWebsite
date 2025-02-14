@@ -1,0 +1,34 @@
+@use "fonts.scss";
+
+table {
+    @extend .ibm-plex-serif;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    width: 90%;
+
+    thead th {
+        font-weight: 500;
+        font-size: 1.25em;
+    }
+
+    td:has(.material-symbols-outlined) {
+        padding: 0;
+        width: 0;
+    }
+
+    th:first-child,
+    td:first-child {
+        width: fit-content;
+    }
+
+    th,
+    td {
+        padding-inline-start: 10px;
+        padding-inline-end: 10px;
+        line-height: 175%;
+    }
+
+    span.material-symbols-outlined {
+        font-weight: 300 !important;
+    }
+}

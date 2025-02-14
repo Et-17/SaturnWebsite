@@ -1,0 +1,64 @@
+@use "fonts.scss";
+
+.page {
+    width: 70%;
+    margin-top: var(--outer-gutter);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.page-top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    @extend .ibm-plex-serif;
+    font-weight: 600;
+    font-size: 2em;
+    line-height: 250%;
+}
+
+.information {
+    @extend .ibm-plex-serif;
+    line-height: 125%;
+}
+
+.information-header {
+    @extend .ibm-plex-serif;
+    font-weight: 400;
+}
+
+.clickable {
+    // Placing cursor in :hover makes it briefly show the normal text cursor
+    cursor: pointer;
+}
+
+.clickable:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(30, 30, 30);
+    text-decoration-thickness: 10%;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.back-button {
+    @extend .clickable;
+    @extend .ibm-plex-serif;
+    font-size: 1.5em;
+    align-self: center;
+}
+
+// Page and subpage switch transitions
+.page-switch-enter-active,
+.page-switch-leave-active {
+    transition: opacity 0.25s;
+}
+
+.page-switch-enter-from,
+.page-switch-leave-to {
+    opacity: 0;
+}
