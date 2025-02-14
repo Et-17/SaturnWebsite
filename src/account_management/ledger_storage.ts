@@ -7,9 +7,11 @@ import { toRaw } from "vue";
 export async function load_ledger(): Promise<void> {
     let json_string = localStorage["saturn.ledger"];
     if (json_string == undefined) {
+        console.log("bloop");
         // await write_ledger_file(new Map(), new Map(), new Map());
         await load_example_ledger();
-        json_string = localStorage["saturn.ledger"];
+        await save_ledger();
+        return;
     }
 
     let ledger = JSON.parse(json_string, des_reviver);
