@@ -180,6 +180,6 @@ export const recalc_account_balance = (account: UUID) =>
     get_account(account).balance = calc_balance(get_account(account).transactions);
 
 
-export async function export_transactions(formatted_transactions: string[][]) {
-    return window.storage.export_transactions_call(formatted_transactions)
-}
+// export async function export_transactions(formatted_transactions: string[][]) {
+//     return window.storage.export_transactions_call(formatted_transactions)
+// }

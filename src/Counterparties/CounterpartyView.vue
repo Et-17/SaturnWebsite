@@ -5,7 +5,6 @@ import { get_transaction, UUID, get_counterparty, get_account } from '../account
 import { computed } from 'vue';
 import TransactionModal from '../TransactionModal.vue';
 import DeleteTransactionModal from '../DeleteModals/DeleteTransactionModal.vue';
-import ExportTransactions from '../ExportTransactions.vue';
 
 const props = defineProps<{
   counterparty_uuid: UUID;
@@ -45,10 +44,7 @@ const counterparty = computed(() => get_counterparty(props.counterparty_uuid));
         <td>
           <TransactionModal button-icon="add" :initialCounterpartyUuid="counterparty_uuid" />
         </td>
-        <td v-for="_ in 3"></td>
-        <td>
-          <ExportTransactions button-icon="download" :transactions="counterparty.transactions" />
-        </td>
+        <td v-for="_ in 4"></td>
       </tr>
     </tbody>
   </table>
