@@ -8,7 +8,7 @@ export async function load_ledger(): Promise<void> {
     let json_string = localStorage["saturn.ledger"];
     if (json_string == undefined) {
         // await write_ledger_file(new Map(), new Map(), new Map());
-        await save_ledger();
+        await load_example_ledger();
         json_string = localStorage["saturn.ledger"];
     }
 

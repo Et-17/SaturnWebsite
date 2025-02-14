@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { load_example_ledger } from '../account_management/ledger_state';
 import SidebarButton from './SidebarButton.vue';
+import { ref } from 'vue';
 
 const current_page = defineModel<string>('current');
 
@@ -14,6 +15,12 @@ const buttons: [string, string][] = [
   ["accounts", "account_balance"],
   ["counterparties", "storefront"]
 ];
+
+const help_selected = ref(false);
+function open_readme() {
+  help_selected.value = true;
+  window.location.href = 'https://github.com/Et-17/SaturnWebsite';
+}
 </script>
 
 <template>
@@ -21,6 +28,7 @@ const buttons: [string, string][] = [
     <template v-for="button in buttons">
       <SidebarButton @click="current_page = button[0]" :icon-name="button[1]" :selected="button[0] == current_page" />
     </template>
+    <SidebarButton @click="open_readme" icon-name="help_center" :selected="help_selected" />
     <span class="clickable ibm-plex-serif" @click="load_example_ledger">
       Open example ledger
     </span>
