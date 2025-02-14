@@ -8,7 +8,7 @@ import Counterparties from "./Counterparties/Counterparties.vue";
 
 const current_page = ref("recent-transactions");
 
-// onMounted(load_ledger);
+onMounted(load_ledger);
 </script>
 
 <template>

@@ -1,23 +1,47 @@
-import { PathLike } from "node:fs";
-import { Transaction, Account, Counterparty, UUID, UUIDMap } from "./ledger_state";
-import fs from "node:fs/promises";
+import type { Transaction, Account, Counterparty, UUID, UUIDMap } from "./ledger_state";
+import { accounts, counterparties, transactions } from './ledger_state';
+import example_ledger from '../example_ledger.json';
+import { toRaw } from "vue";
 
-// In Electron, you can only access files in secure contexts so the functions
-// in this file cannot be accessed directly. They get loaded globally in 
-// preload.ts. Look at ../interface.d.ts for more info.
 
-export async function write_ledger_file(path: PathLike, accounts: UUIDMap<Account>, counterparties: UUIDMap<Counterparty>, transactions: UUIDMap<Transaction>): Promise<void> {
+export async function load_ledger(): Promise<void> {
+    let json_string = localStorage["saturn.ledger"];
+    if (json_string == undefined) {
+        // await write_ledger_file(new Map(), new Map(), new Map());
+        await save_ledger();
+        json_string = localStorage["saturn.ledger"];
+    }
+
+    let ledger = JSON.parse(json_string, des_reviver);
+    if (!ledger.ledger_accounts || !ledger.ledger_counterparties || !ledger.ledger_transactions) {
+        throw "Malformed ledger file";
+    }
+
+    accounts.value = ledger.ledger_accounts;
+    counterparties.value = ledger.ledger_counterparties;
+    transactions.value = ledger.ledger_transactions;
+}
+
+export async function load_example_ledger(): Promise<void> {
+    // Typescript doesn't know how to interpret the imported JSON, so we have to
+    // kinda disable it here
+    accounts.value = des_reviver("ledger_accounts", example_ledger.ledger_accounts as any);
+    counterparties.value = des_reviver("ledger_counterparties", example_ledger.ledger_counterparties as any);
+    transactions.value = des_reviver("ledger_transactions", example_ledger.ledger_transactions as any);
+}
+
+export async function save_ledger(): Promise<void> {
     // I add the ledger_ thing to prevent some name conflicts in the reviver. I
     // should resolve the name conflicts by checking "this" but whatever.
     let ledger = {
-        "ledger_accounts": Array.from(accounts.entries()),
-        "ledger_counterparties": Array.from(counterparties.entries()),
-        "ledger_transactions": Array.from(transactions.entries())
+        "ledger_accounts": Array.from(toRaw(accounts.value)),
+        "ledger_counterparties": Array.from(toRaw(counterparties.value)),
+        "ledger_transactions": Array.from(toRaw(transactions.value))
     }
     let json_string = JSON.stringify(ledger);
     console.log(JSON.parse(json_string));
 
-    return fs.writeFile(path, json_string, { encoding: "utf8" });
+    localStorage["saturn.ledger"] = json_string;
 }
 
 // JSON doesn't actually support Maps, so we have to do some special
@@ -41,26 +65,4 @@ function des_reviver(key: string, value: [UUID, any][]): any {
     } else {
         return value;
     }
-}
-
-export async function read_ledger_file(path: PathLike): Promise<[UUIDMap<Account>, UUIDMap<Counterparty>, UUIDMap<Transaction>]> {
-    console.log("loading ledger from", path);
-
-    let json_string: string = "";
-    try {
-        json_string = await fs.readFile(path, { encoding: "utf8" });
-    } catch (error: any) {
-        if (error.code = "ENOENT") {
-            // Ledger file doesn't exist, create it
-            await write_ledger_file(path, new Map(), new Map(), new Map());
-            return [new Map(), new Map(), new Map()];
-        }
-    }
-
-    let ledger = JSON.parse(json_string, des_reviver);
-    if (!ledger.ledger_accounts || !ledger.ledger_counterparties || !ledger.ledger_transactions) {
-        throw "Malformed ledger file";
-    }
-
-    return [ledger.ledger_accounts, ledger.ledger_counterparties, ledger.ledger_transactions];
 }

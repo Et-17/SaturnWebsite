@@ -2,13 +2,10 @@
 // accounts, and counterparties.
 
 import { ref, type Ref, toRaw } from "vue";
-import { save_ledger } from "./ledger_storage";
-export { load_ledger, load_example_ledger, save_ledger } from './ledger_storage';
 
 // This is the return type of crypto.randomUUID()
 export type UUID = `${string}-${string}-${string}-${string}-${string}`;
 export type UUIDMap<ValueType> = Map<UUID, ValueType>;
-
 
 export interface Transaction {
     account_id: UUID;
@@ -179,6 +176,18 @@ export const calc_balance = (transactions: UUID[]): number =>
 export const recalc_account_balance = (account: UUID) =>
     get_account(account).balance = calc_balance(get_account(account).transactions);
 
+export { load_ledger } from './ledger_storage';
+
+export async function load_example_ledger(): Promise<void> {
+    let ledger = await window.storage.example_ledger();
+    accounts.value = ledger[0];
+    counterparties.value = ledger[1];
+    transactions.value = ledger[2];
+}
+
+export async function save_ledger(): Promise<void> {
+    return window.storage.write_ledger_file(toRaw(accounts.value), toRaw(counterparties.value), toRaw(transactions.value));
+}
 
 export async function export_transactions(formatted_transactions: string[][]) {
     return window.storage.export_transactions_call(formatted_transactions)

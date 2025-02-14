@@ -1,0 +1,154 @@
+{
+    "ledger_accounts": [
+        [
+            "d3ee16b9-ba24-45a0-a2e0-23a88c859cfc",
+            {
+                "name": "Checking",
+                "description": "My checking account",
+                "balance": 100,
+                "transactions": [
+                    "38a2b950-fc09-495d-bea0-5070fce5147a",
+                    "0052b424-7766-4a9b-838d-2577b354a2ee"
+                ],
+                "creation_timestamp": "2024-12-10T12:56:57.782Z"
+            }
+        ],
+        [
+            "07704b8a-e0f4-4e08-8f7a-046d6495fd6e",
+            {
+                "name": "Savings",
+                "description": "My savings account",
+                "balance": 35,
+                "transactions": [
+                    "e49defa5-848a-4e54-8552-0f7f50eaa39f",
+                    "9c83df0b-e0b9-45fc-afa0-ee94744fa1d7",
+                    "56fceec9-5f38-425b-8afd-cd3ec37a58a6"
+                ],
+                "creation_timestamp": "2024-12-10T12:56:57.188Z"
+            }
+        ],
+        [
+            "5a8975d6-9847-4a5a-be47-4b1203e3340e",
+            {
+                "name": "Healthcare",
+                "description": "A fund specifically for healthcare",
+                "balance": 50,
+                "transactions": [
+                    "95317823-fc9f-475c-abc1-981f4f10af41",
+                    "bddcce38-25de-40c6-a5fe-5839bd2fccec"
+                ],
+                "creation_timestamp": "2024-12-10T12:59:36.966Z"
+            }
+        ]
+    ],
+    "ledger_counterparties": [
+        [
+            "4e4a8f7c-37e8-44a4-a4f8-a13bc81b8066",
+            {
+                "name": "Google",
+                "description": "My employer",
+                "transactions": [
+                    "38a2b950-fc09-495d-bea0-5070fce5147a",
+                    "e49defa5-848a-4e54-8552-0f7f50eaa39f",
+                    "9c83df0b-e0b9-45fc-afa0-ee94744fa1d7",
+                    "95317823-fc9f-475c-abc1-981f4f10af41"
+                ]
+            }
+        ],
+        [
+            "ebcfb3cc-e946-441e-a193-2e069eae23b2",
+            {
+                "name": "Walmart",
+                "description": "Multinational supermarket chain",
+                "transactions": [
+                    "0052b424-7766-4a9b-838d-2577b354a2ee"
+                ]
+            }
+        ],
+        [
+            "d4ea1c0e-d00a-4090-a3af-16c86344a5af",
+            {
+                "name": "Dan's Brake World",
+                "description": "Best car repair shop in the county",
+                "transactions": [
+                    "56fceec9-5f38-425b-8afd-cd3ec37a58a6"
+                ]
+            }
+        ],
+        [
+            "465fb45f-f392-4779-b1ce-e5efcf2b86ea",
+            {
+                "name": "Rothman Center - Pediatric Neuropsychiatry",
+                "description": "The doctors that help treat my ADHD",
+                "transactions": [
+                    "bddcce38-25de-40c6-a5fe-5839bd2fccec"
+                ]
+            }
+        ]
+    ],
+    "ledger_transactions": [
+        [
+            "38a2b950-fc09-495d-bea0-5070fce5147a",
+            {
+                "account_id": "d3ee16b9-ba24-45a0-a2e0-23a88c859cfc",
+                "counterparty_id": "4e4a8f7c-37e8-44a4-a4f8-a13bc81b8066",
+                "amount": 200,
+                "timestamp": "2024-12-10T12:56:59.288Z"
+            }
+        ],
+        [
+            "0052b424-7766-4a9b-838d-2577b354a2ee",
+            {
+                "account_id": "d3ee16b9-ba24-45a0-a2e0-23a88c859cfc",
+                "counterparty_id": "ebcfb3cc-e946-441e-a193-2e069eae23b2",
+                "amount": -100,
+                "timestamp": "2024-12-10T12:56:59.000Z"
+            }
+        ],
+        [
+            "e49defa5-848a-4e54-8552-0f7f50eaa39f",
+            {
+                "account_id": "07704b8a-e0f4-4e08-8f7a-046d6495fd6e",
+                "counterparty_id": "4e4a8f7c-37e8-44a4-a4f8-a13bc81b8066",
+                "amount": 50,
+                "timestamp": "2024-12-10T12:57:03.490Z"
+            }
+        ],
+        [
+            "9c83df0b-e0b9-45fc-afa0-ee94744fa1d7",
+            {
+                "account_id": "07704b8a-e0f4-4e08-8f7a-046d6495fd6e",
+                "counterparty_id": "4e4a8f7c-37e8-44a4-a4f8-a13bc81b8066",
+                "amount": 75,
+                "timestamp": "2024-12-10T12:57:25.901Z"
+            }
+        ],
+        [
+            "56fceec9-5f38-425b-8afd-cd3ec37a58a6",
+            {
+                "account_id": "07704b8a-e0f4-4e08-8f7a-046d6495fd6e",
+                "counterparty_id": "d4ea1c0e-d00a-4090-a3af-16c86344a5af",
+                "amount": -90,
+                "timestamp": "2024-12-10T12:58:43.972Z"
+            }
+        ],
+        [
+            "95317823-fc9f-475c-abc1-981f4f10af41",
+            {
+                "account_id": "5a8975d6-9847-4a5a-be47-4b1203e3340e",
+                "counterparty_id": "4e4a8f7c-37e8-44a4-a4f8-a13bc81b8066",
+                "amount": 80,
+                "timestamp": "2024-12-10T13:00:01.356Z"
+            }
+        ],
+        [
+            "bddcce38-25de-40c6-a5fe-5839bd2fccec",
+            {
+                "account_id": "5a8975d6-9847-4a5a-be47-4b1203e3340e",
+                "counterparty_id": "465fb45f-f392-4779-b1ce-e5efcf2b86ea",
+                "amount": -30,
+                "timestamp": "2024-12-10T13:02:04.740Z"
+            }
+        ]
+    ]
+}
